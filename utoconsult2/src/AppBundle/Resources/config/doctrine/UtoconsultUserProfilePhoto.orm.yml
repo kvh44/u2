@@ -1,0 +1,48 @@
+AppBundle\Entity\UtoconsultUserProfilePhoto:
+    type: entity
+    table: utoconsult_user_profile_photo
+    indexes:
+        user_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        photo:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        photoicon:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

@@ -1,0 +1,25 @@
+AppBundle\Entity\Province:
+    type: entity
+    table: province
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        provinceid:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        province:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

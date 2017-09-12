@@ -1,0 +1,134 @@
+AppBundle\Entity\UtoconsultFile:
+    type: entity
+    table: utoconsult_file
+    indexes:
+        fileindex_idx:
+            columns:
+                - title
+        category_id_idx:
+            columns:
+                - category_id
+        user_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        utoconsult_file_sluggable_idx:
+            columns:
+                - slug
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        categoryId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+            column: category_id
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        keywords:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        file:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fileOriginal:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: file_original
+        visitnumber:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        imageicon:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        lang:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        level:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        isuto:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+        type:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        isvalid:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+        isdeleted:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        slug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

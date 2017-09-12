@@ -1,0 +1,102 @@
+AppBundle\Entity\UtoconsultPhoto:
+    type: entity
+    table: utoconsult_photo
+    indexes:
+        category_id_idx:
+            columns:
+                - category_id
+        user_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        utoconsult_photo_sluggable_idx:
+            columns:
+                - slug
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        categoryId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+            column: category_id
+        title:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        content:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        photoicon:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        photosmall:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        photo:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        link:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        visitnumber:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        isdeleted:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+        isvalid:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        slug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,30 @@
+AppBundle\Entity\City:
+    type: entity
+    table: city
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cityid:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        city:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        fatherid:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,72 @@
+AppBundle\Entity\UtoconsultUserContact:
+    type: entity
+    table: utoconsult_user_contact
+    indexes:
+        user_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        mobile:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        fix:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        fix2:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        qq:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        msn:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        skype:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

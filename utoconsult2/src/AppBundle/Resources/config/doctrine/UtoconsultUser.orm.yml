@@ -1,0 +1,77 @@
+AppBundle\Entity\UtoconsultUser:
+    type: entity
+    table: utoconsult_user
+    uniqueConstraints:
+        username:
+            columns:
+                - username
+        email:
+            columns:
+                - email
+        utoconsult_user_sluggable_idx:
+            columns:
+                - slug
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        type:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        level:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        isadmin:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+        active:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        slug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,154 @@
+AppBundle\Entity\UtoconsultMyArticle:
+    type: entity
+    table: utoconsult_my_article
+    indexes:
+        articleindex_idx:
+            columns:
+                - title
+        category1_id_idx:
+            columns:
+                - category1_id
+        category2_id_idx:
+            columns:
+                - category2_id
+        user_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        utoconsult_my_article_sluggable_idx:
+            columns:
+                - slug
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        category1Id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: category1_id
+        category2Id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: category2_id
+        keywords:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        content:
+            type: blob
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        pdf:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        keywordsEn:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: keywords_en
+        descriptionEn:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: description_en
+        titleEn:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: title_en
+        contentEn:
+            type: blob
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: content_en
+        pdfEn:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: pdf_en
+        userId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        visitnumber:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        comment:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+        level:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        isdeleted:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+        isvalid:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        slug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

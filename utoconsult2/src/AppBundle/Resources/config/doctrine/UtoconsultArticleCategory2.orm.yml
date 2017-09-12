@@ -1,0 +1,53 @@
+AppBundle\Entity\UtoconsultArticleCategory2:
+    type: entity
+    table: utoconsult_article_category2
+    indexes:
+        category1_id_idx:
+            columns:
+                - category1_id
+    uniqueConstraints:
+        name:
+            columns:
+                - name
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        category1Id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: category1_id
+        orders:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        name:
+            type: string
+            nullable: false
+            length: 15
+            options:
+                fixed: false
+        keywords:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

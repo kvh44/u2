@@ -1,0 +1,30 @@
+AppBundle\Entity\Area:
+    type: entity
+    table: area
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        areaid:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        area:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        fatherid:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

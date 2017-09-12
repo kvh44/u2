@@ -1,0 +1,80 @@
+AppBundle\Entity\UtoconsultUserInformation:
+    type: entity
+    table: utoconsult_user_information
+    indexes:
+        user_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        realname:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        web:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        special:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        description:
+            type: blob
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        country:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        province:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        city:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        area:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }
