@@ -15,5 +15,13 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-./nbproject/
-/nbproject/
+/web/uploads/
+/web/css/
+/web/js/
+!/web/uploads/.gitkeep
+/web/phpMyAdmin/
+web/.DS_Store
+.DS_Store
+.idea/
+dump.rdb
+./dump.rdb

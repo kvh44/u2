@@ -1,6 +1,7 @@
 AppBundle\Entity\UtoconsultMyArticle:
     type: entity
     table: utoconsult_my_article
+    repositoryClass: AppBundle\Repository\ArticleRepository
     indexes:
         articleindex_idx:
             columns:
