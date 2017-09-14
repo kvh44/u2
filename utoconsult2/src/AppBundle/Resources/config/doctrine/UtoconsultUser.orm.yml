@@ -1,6 +1,7 @@
 AppBundle\Entity\UtoconsultUser:
     type: entity
     table: utoconsult_user
+    repositoryClass: AppBundle\Repository\UserRepository
     uniqueConstraints:
         username:
             columns:

@@ -20,15 +20,25 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/page/{id}", requirements={"id" = "\d+"}, name="singlePage")
+     * @Route("/page/{id}/{title}.{_format}", requirements={"id" = "\d+"}, defaults={"title" = null, "_format" = "html|htm"}, name="singlePage")
      */
     public function singlePageAction(Request $request)
     {
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository('AppBundle:UtoconsultMyArticle')->findArticleById($id);
-        
 
-        return $this->render('AppBundle:Article:single.html.twig', array('article' => $article));
+		if($article){
+			$user = $em->getRepository('AppBundle:UtoconsultUser')->findUserById($article->getUserId());
+			$nextArticle = $em->getRepository('AppBundle:UtoconsultMyArticle')->findNextArticleById($id);
+			$preArticle = $em->getRepository('AppBundle:UtoconsultMyArticle')->findPreArticleById($id);
+		} 
+
+        return $this->render('AppBundle:Article:single.html.twig', array(
+		'article' => $article,
+		'user' => $user ? $user : null, 
+		'nextArticle' => $nextArticle ? $nextArticle : null,
+		'preArticle' => $preArticle ? $preArticle : null
+		));
     }        
 }
