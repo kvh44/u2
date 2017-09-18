@@ -23,12 +23,12 @@
 						<hr>
                         {% if preArticle is not null %}
 						<h3>
-							<p>上一篇:<a href="{{ path('singlePage', {'id': preArticle.id, 'title': preArticle.title, '_format': 'html'}) }}">{{ preArticle.title }}</a></p>
+							<p>上一篇:<a href="{{ path('singlePageTileHtml', {'id': preArticle.id, 'title': preArticle.title, '_format': 'html'}) }}">{{ preArticle.title }}</a></p>
 						</h3>
 						{% endif %}
 						{% if nextArticle is not null %}
 						<h3>
-							<p>下一篇:<a href="{{ path('singlePage', {'id': nextArticle.id, 'title': nextArticle.title, '_format': 'html'}) }}">{{ nextArticle.title }}</a></p>
+							<p>下一篇:<a href="{{ path('singlePageTileHtml', {'id': nextArticle.id, 'title': nextArticle.title, '_format': 'html'}) }}">{{ nextArticle.title }}</a></p>
 						</h3>
 						{% endif %}
 					</div>
