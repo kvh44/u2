@@ -16,25 +16,25 @@ class ArticleRepository extends EntityRepository {
                         ->getOneOrNullResult();
     }
 	
-	public function findNextArticleById($id)
+    public function findNextArticleById($id)
     {
         return $this->createQueryBuilder('a') 
                         ->where('a.id > :id and a.isdeleted = :isdeleted')
                         ->setParameter('id', $id)
                         ->setParameter('isdeleted', 0)
-						->orderBy('a.id', 'ASC')
+                        ->orderBy('a.id', 'ASC')
                         ->setMaxResults(1)
                         ->getQuery()
                         ->getOneOrNullResult();
     }
 	
-	public function findPreArticleById($id)
+    public function findPreArticleById($id)
     {
         return $this->createQueryBuilder('a') 
                         ->where('a.id < :id and a.isdeleted = :isdeleted')
                         ->setParameter('id', $id)
                         ->setParameter('isdeleted', 0)
-						->orderBy('a.id', 'DESC')
+                        ->orderBy('a.id', 'DESC')
                         ->setMaxResults(1)
                         ->getQuery()
                         ->getOneOrNullResult();

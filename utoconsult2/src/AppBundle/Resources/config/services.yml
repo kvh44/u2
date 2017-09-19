@@ -1,0 +1,11 @@
+services:
+    app_utoconsult.CacheService:
+            class: AppBundle\Services\CacheService
+            arguments: ["@service_container", "%cache.categories%"]
+    app_utoconsult.CategoryService:
+            class: AppBundle\Services\CategoryService
+            arguments: ["@doctrine", "@session", "@app_utoconsult.CacheService"]        
+    app_utoconsult.controller.preExecuteListener:
+        class: AppBundle\EventListener\ControllerListener
+        tags:
+          -  { name: kernel.event_listener, event: kernel.controller, method: onCoreController }   

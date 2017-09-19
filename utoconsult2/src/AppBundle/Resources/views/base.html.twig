@@ -48,6 +48,7 @@
                     </div>
                     </nav>
                 </div>
+                {% include '@AppBundle/Resources/views/menu.html.twig' %}
                 {% if paths is defined %}
                 {% include '@AppBundle/Resources/views/headerPath.html.twig' with {'paths' : paths} %}
                 {% endif %}

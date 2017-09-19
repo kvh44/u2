@@ -5,3 +5,7 @@
 .page-heading-path-block {
     padding: 20px 10px 20px 10px;
 }
+
+ul.nav li.dropdown:hover ul.dropdown-menu{
+    display: block;
+}
