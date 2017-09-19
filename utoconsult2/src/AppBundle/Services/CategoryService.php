@@ -28,11 +28,15 @@ class CategoryService {
 
 
 
-
-
     protected $cacheService;
     
     
+    
+    const FILE_CATEGORY_ID = 8;
+
+
+
+
     public function __construct(Registry $doctrine, Session $session,CacheService $cacheService) 
     {
         $this->doctrine = $doctrine;
@@ -54,6 +58,10 @@ class CategoryService {
                     $categories2 = $this->em->getRepository('AppBundle:UtoconsultArticleCategory2')
                             ->findAllCategory2ByCategory1Id($category1->getId());
                     $categories['categories2'][$category1->getId()] = $categories2;
+                    
+                    if($category1->getId() === self::FILE_CATEGORY_ID) {
+                        
+                    }
                 }
             }
             
