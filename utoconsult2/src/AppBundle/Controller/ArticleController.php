@@ -10,6 +10,7 @@ class ArticleController extends FrontBaseController
     /**
      * @Route("/page/{id}/{title}.{_format}", requirements={"id" = "\d+"}, defaults={"title" = null, "_format" = "html|htm"}, name="singlePageTileHtml")
      * @Route("/page/{id}.{_format}", requirements={"id" = "\d+"}, defaults={"_format" = "html|htm"}, name="singlePageHtml")
+     * @Route("/articles/single/id/{id}/name/{title}.{_format}", requirements={"id" = "\d+"}, defaults={"_format" = "html|htm"}, name="singlePageOld")
      */
     public function singlePageAction(Request $request)
     {
