@@ -15,6 +15,8 @@ class DefaultController extends FrontBaseController
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
+		$articles = $this->container->get('app_utoconsult.ArticleService')->findHomeArticlesByCategory();
+		
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);

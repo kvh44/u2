@@ -4,7 +4,10 @@ services:
             arguments: ["@service_container", "%cache.categories%"]
     app_utoconsult.CategoryService:
             class: AppBundle\Services\CategoryService
-            arguments: ["@doctrine", "@session", "@app_utoconsult.CacheService"]        
+            arguments: ["@doctrine", "@session", "@app_utoconsult.CacheService"]       
+    app_utoconsult.ArticleService:
+            class: AppBundle\Services\ArticleService
+            arguments: ["@doctrine", "@session", "@app_utoconsult.CacheService"]          
     app_utoconsult.controller.preExecuteListener:
         class: AppBundle\EventListener\ControllerListener
         tags:
