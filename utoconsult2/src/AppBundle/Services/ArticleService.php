@@ -46,6 +46,7 @@ class ArticleService {
 		$articles = array();
 		foreach($categories1 as $category1){
 			$articles[$category1->getId()]['name'] = $category1->getName();
+                        $articles[$category1->getId()]['photo'] = $category1->getPhoto1();
 			$articles[$category1->getId()]['data'] = $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId($category1->getId());
 		}
 		return $articles;

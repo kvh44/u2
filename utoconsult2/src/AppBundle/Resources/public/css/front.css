@@ -6,6 +6,37 @@
     padding: 20px 10px 20px 10px;
 }
 
-ul.nav li.dropdown:hover ul.dropdown-menu{
+ul.nav li.dropdown:hover {
+    background-color: rgb(108, 161, 221);
+}
+
+ul.nav li.dropdown:hover ul.dropdown-menu {
     display: block;
+}
+
+.navbar {
+    background-color: rgb(108, 161, 221);
+    border-radius: 4px;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+}
+
+div.navbar li a {
+    color: white;
+}
+
+div.navbar li ul.dropdown-menu li a {
+    color: black;
+}
+
+.article .ibox-content {
+    border-width: 0px;
 }

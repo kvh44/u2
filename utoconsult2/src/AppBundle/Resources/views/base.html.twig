@@ -31,13 +31,12 @@
     <body>
         <div id="wrapper">
             
-            <div class="gray-bg">
+            <div class="white-bg">
                 
-                <div class="navbar">
-                    <div class="container white-bg">
-                        <h1>优拓建筑工程技术</h1>
-                    </div>
+                <div class="container white-bg">
+                    <h1>优拓建筑工程技术</h1>
                 </div>
+
                 {% include '@AppBundle/Resources/views/menu.html.twig' %}
                 {% if paths is defined %}
                 {% include '@AppBundle/Resources/views/headerPath.html.twig' with {'paths' : paths} %}

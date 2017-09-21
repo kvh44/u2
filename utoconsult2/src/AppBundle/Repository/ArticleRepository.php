@@ -43,19 +43,19 @@ class ArticleRepository extends EntityRepository {
 	public function findArticlesByCategoryId($category1_id = null, $category2_id = null, $max = 10)
 	{
 		$q = $this->createQueryBuilder('a')
-		                ->select('a.id, a.category1Id, a.category2Id, a.title')
-						->where('a.isdeleted = :isdeleted')
+                        ->select('a.id, a.category1Id, a.category2Id, a.title')
+                        ->where('a.isdeleted = :isdeleted')
                         ->setParameter('isdeleted', 0)
-						->orderBy('a.id', 'DESC')
-						->setMaxResults($max)
-						;
+                        ->orderBy('a.id', 'DESC')
+                        ->setMaxResults($max)
+                        ;
 						
 		if($category1_id) {
 			$q->andWhere('a.category1Id = :category1Id');
 			$q->setParameter('category1Id', $category1_id);
 		}
 
-        if($category2_id) {
+                if($category2_id) {
 			$q->andWhere('a.category2Id = :category2Id');
 			$q->setParameter('category2Id', $category2_id);
 		}	 		

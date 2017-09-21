@@ -6,8 +6,6 @@
 			<div class="col-lg-10 col-lg-offset-1">
 				<div class="ibox">
 					<div class="ibox-content">
-						<div class="pull-right">
-						</div>
 						<div class="text-center article-title">
 							<h1>
 								{{ article.title }}
@@ -21,7 +19,7 @@
 							{{ article.content|raw }}
 						</p>
 						<hr>
-                        {% if preArticle is not null %}
+                                                {% if preArticle is not null %}
 						<h3>
 							<p>上一篇:<a href="{{ path('singlePageTileHtml', {'id': preArticle.id, 'title': preArticle.title, '_format': 'html'}) }}">{{ preArticle.title }}</a></p>
 						</h3>

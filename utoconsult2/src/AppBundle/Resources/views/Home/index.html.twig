@@ -1,0 +1,157 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper wrapper-content  animated fadeInRight article">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            {% if articles[1] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[1]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="media">
+                                            <img class="media-object pull-left img-lg" src="/{{upload_directory}}{{category1_photo1_directory}}{{articles[1]['photo']}}" />
+
+                                            <ul>
+                                                {% for article in articles[1]['data'] %}
+                                                <li>
+                                                    <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if articles[2] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[2]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            {% for article in articles[2]['data'] %}
+                                            <li>
+                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if articles[3] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[3]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            {% for article in articles[3]['data'] %}
+                                            <li>
+                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>    
+                        
+                        <div class="row">
+                            {% if articles[4] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[4]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            {% for article in articles[4]['data'] %}
+                                            <li>
+                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if articles[5] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[5]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            {% for article in articles[5]['data'] %}
+                                            <li>
+                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if articles[6] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[6]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            {% for article in articles[6]['data'] %}
+                                            <li>
+                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row">
+                            {% if articles[7] %}
+                            <div class="col-lg-4 col-xs-12">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-info-circle"></i> {{ articles[7]['name'] }}
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            {% for article in articles[7]['data'] %}
+                                            <li>
+                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                        </div>
+                    </div>    
+                </div>    
+            </div>
+        </div>
+    </div>
+{% endblock %}    

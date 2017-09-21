@@ -13,6 +13,8 @@ parameters:
     cache.categories: "categories"
     search.host: "localhost"
     search.port: 9200
+    upload_directory: "uploads/"
+    category1_photo1_directory: "category1photo1/"
 
 framework:
     #esi: ~
@@ -46,7 +48,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-
+    globals:
+        upload_directory: "%upload_directory%"
+        category1_photo1_directory: "%category1_photo1_directory%"
 # Doctrine Configuration
 doctrine:
     dbal:
