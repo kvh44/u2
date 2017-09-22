@@ -1,5 +1,7 @@
 /nbproject
 /nbproject/*
+nbproject/
+nbproject/*
 .DS_Store
 .idea/
 dump.rdb
