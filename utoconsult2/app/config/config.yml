@@ -2,11 +2,19 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: zh
+    cache.dsn.default: "redis://localhost"
+    cache.dsn.categories: "redis://localhost/1"
+    cache.categories: "categories"
+    search.host: "localhost"
+    search.port: 9200
+    upload_directory: "uploads/"
+    category1_photo1_directory: "category1photo1/"
 
 framework:
     #esi: ~
@@ -25,11 +33,14 @@ framework:
     trusted_hosts: ~
     session:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id: session.handler.native_file
-        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        handler_id: snc_redis.session.handler
+        #handler_id: session.handler.native_file
+        #save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
     fragments: ~
     http_method_override: true
-    assets: ~
+    assets: 
+        version: 'v1.0'
+        version_format: '%%s?version=%%s'
     php_errors:
         log: true
 
@@ -37,7 +48,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-
+    globals:
+        upload_directory: "%upload_directory%"
+        category1_photo1_directory: "%category1_photo1_directory%"
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -74,3 +87,20 @@ assetic:
     use_controller: false
     filters:
         cssrewrite: ~
+        
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: %cache.dsn.default%
+            logging: %kernel.debug%
+        categories:
+            type: predis
+            alias: categories
+            dsn: %cache.dsn.categories%
+            logging: true       
+    session:
+        client: default
+        prefix: session
+        ttl: 36000        

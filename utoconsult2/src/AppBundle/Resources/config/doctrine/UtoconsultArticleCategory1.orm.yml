@@ -1,6 +1,7 @@
 AppBundle\Entity\UtoconsultArticleCategory1:
     type: entity
     table: utoconsult_article_category1
+    repositoryClass: AppBundle\Repository\Category1Repository
     uniqueConstraints:
         name:
             columns:

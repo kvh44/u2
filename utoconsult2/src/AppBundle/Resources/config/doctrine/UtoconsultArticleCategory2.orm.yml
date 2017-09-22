@@ -1,6 +1,7 @@
 AppBundle\Entity\UtoconsultArticleCategory2:
     type: entity
     table: utoconsult_article_category2
+    repositoryClass: AppBundle\Repository\Category2Repository
     indexes:
         category1_id_idx:
             columns:
