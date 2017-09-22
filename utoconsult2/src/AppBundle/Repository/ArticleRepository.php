@@ -48,34 +48,43 @@ class ArticleRepository extends EntityRepository {
                         ->setParameter('isdeleted', 0)
                         ->orderBy('a.id', 'DESC')
                         ;
-                
-                if($count === true){
-                    return count($q->getQuery()->getResult());
-                }
-                
-                if($max > 0) {
-                    $q->setMaxResults($max);
-                }
-                
-                if($offset > 0) {
-                    $q->setFirstResult($offset);
-                }
-                
-		if($withUser){
-                    $q->innerJoin('AppBundle:UtoconsultUser', 'u', 'WITH', 'a.userId = u.id');
-                    $q->addSelect('u.username, u.id as userId');
-                }
-                
-		if($category1_id) {
+        if($count === true){
+			$q = $this->createQueryBuilder('a')
+                        ->select('count(a.id)')
+                        ->where('a.isdeleted = :isdeleted')
+                        ->setParameter('isdeleted', 0)
+                        ->orderBy('a.id', 'DESC')
+                        ;
+		}			
+				
+        if($category1_id) {
 			$q->andWhere('a.category1Id = :category1Id');
 			$q->setParameter('category1Id', $category1_id);
 		}
 
-                if($category2_id) {
+		if($category2_id) {
 			$q->andWhere('a.category2Id = :category2Id');
 			$q->setParameter('category2Id', $category2_id);
 		}
 		
+		if($count === true){
+			$count = $q->getQuery()->getResult();
+			return $count[0][1];
+		}
+                
+		if($max > 0) {
+			$q->setMaxResults($max);
+		}
+		
+		if($offset > 0) {
+			$q->setFirstResult($offset);
+		}
+                
+		if($withUser){
+			$q->innerJoin('AppBundle:UtoconsultUser', 'u', 'WITH', 'a.userId = u.id');
+			$q->addSelect('u.username, u.id as userId');
+		}
+
 		return $q->getQuery()->getResult();
 	}
 }

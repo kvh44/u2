@@ -10,7 +10,7 @@ class DefaultController extends FrontBaseController
     /**
      * @Route("/", name="homepage")
      * @Route("/index", name="index")
-     * @Route("/index.html", name="indexpage")
+     * @Route("/index.html", name="indexHtml")
      */
     public function indexAction(Request $request)
     {

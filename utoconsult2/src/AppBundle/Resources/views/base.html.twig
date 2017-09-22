@@ -7,15 +7,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{% block title %}Utoconsult 优拓建筑资讯网{% endblock %}</title>
+        <title>{% block title %}优拓－建筑工程技术与项目管理的交流平台{% endblock %}</title>
         
         {% stylesheets output='css/compiled/app.css' 
             '@AppBundle/Resources/public/inspinia/css/bootstrap.min.css' 
             '@AppBundle/Resources/public/inspinia/font-awesome/css/font-awesome.css' 
             '@AppBundle/Resources/public/inspinia/css/animate.css' 
             '@AppBundle/Resources/public/inspinia/css/style.css' 
-            '@AppBundle/Resources/public/inspinia/css/plugins/sweetalert/sweetalert.css' 
-            '@AppBundle/Resources/public/inspinia/css/plugins/iCheck/custom.css' 
             '@AppBundle/Resources/public/css/front.css' 
             filter='cssrewrite' 
         %}
@@ -34,7 +32,7 @@
             <div class="white-bg">
                 
                 <div class="container white-bg">
-                    <h1>优拓建筑工程技术</h1>
+                    <a href="{{ path('indexHtml') }}"><h1>优拓建筑工程技术</h1></a>
                 </div>
 
                 {% include '@AppBundle/Resources/views/menu.html.twig' %}
@@ -55,7 +53,6 @@
         '@AppBundle/Resources/public/inspinia/js/plugins/metisMenu/jquery.metisMenu.js'
         '@AppBundle/Resources/public/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js' 
         '@AppBundle/Resources/public/inspinia/js/inspinia.js' 
-        '@AppBundle/Resources/public/inspinia/js/plugins/pace/pace.min.js'
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
