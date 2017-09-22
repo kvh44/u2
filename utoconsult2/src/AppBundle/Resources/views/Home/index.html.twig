@@ -1,154 +1,98 @@
 {% extends '@App/base.html.twig' %}
 
+{% block css %}
+{% endblock %}
+        
 {% block body %}
+    {% set randomBadges = ['badge-default','badge-primary', 'badge-info', 'badge-success', 'badge-warning', 'badge-danger'] %}
+    {% set randomPanels = ['panel-default','panel-primary', 'panel-info', 'panel-success', 'panel-warning', 'panel-danger'] %}
+    {% set startNewRows = [1, 4, 7] %}
+    {% set endNewRows = [3, 6, 9] %}
     <div class="wrapper wrapper-content  animated fadeInRight article">
+        <div class="row">
+            
+            <div class="ibox-content ">
+                <div class="col-lg-3 col-xs-3"></div>
+                            <div class="carousel slide col-lg-6 col-xs-6" id="carousel2">
+                                <ol class="carousel-indicators">
+                                    <li data-slide-to="0" data-target="#carousel2"  class="active"></li>
+                                    <li data-slide-to="1" data-target="#carousel2"></li>
+                                    <li data-slide-to="2" data-target="#carousel2"></li>
+                                    <li data-slide-to="3" data-target="#carousel2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img alt="image"  class="img-responsive" src="/uploads/slidephoto/uto1.png">
+                                        <div class="carousel-caption">
+                                            <p>展示图1</p>
+                                        </div>
+                                    </div>
+                                    <div class="item ">
+                                        <img alt="image"  class="img-responsive" src="/uploads/slidephoto/uto2.png">
+                                        <div class="carousel-caption">
+                                            <p>展示图2</p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img alt="image"  class="img-responsive" src="/uploads/slidephoto/uto3.png">
+                                        <div class="carousel-caption">
+                                            <p>展示图3</p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img alt="image"  class="img-responsive" src="/uploads/slidephoto/uto4.png">
+                                        <div class="carousel-caption">
+                                            <p>展示图$</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-slide="prev" href="#carousel2" class="left carousel-control">
+                                    <span class="icon-prev"></span>
+                                </a>
+                                <a data-slide="next" href="#carousel2" class="right carousel-control">
+                                    <span class="icon-next"></span>
+                                </a>
+                            </div>
+                <div class="col-lg-3 col-xs-3"></div>
+            </div>
+        </div>    
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox">
                     <div class="ibox-content">
-                        <div class="row">
-                            {% if articles[1] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[1]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="media">
-                                            <img class="media-object pull-left img-lg" src="/{{upload_directory}}{{category1_photo1_directory}}{{articles[1]['photo']}}" />
+                        {% for articlesByCategory in articles %}
+                            {% if articlesByCategory['data']|length > 0 %}
+                                {% if loop.index in startNewRows %}<div class="row row-3">{% endif %}
+                                    {% if articlesByCategory %}
+                                    <div class="col-lg-4 col-xs-12">
+                                        <div class="panel {{random(randomPanels)}}">
+                                            <div class="panel-heading">
+                                                <i class="fa fa-info-circle"></i> {{ articlesByCategory['name'] }}
+                                            </div>
+                                            <div class="panel-body">
 
-                                            <ul>
-                                                {% for article in articles[1]['data'] %}
-                                                <li>
-                                                    <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                                </li>
-                                                {% endfor %}
-                                            </ul>
+                                                    <img class="pull-left img-md img-rounded small-photo hidden-xs hidden-sm hidden-md" src="/{{upload_directory}}{{category1_photo1_directory}}{{articlesByCategory['photo']}}" />
+
+                                                    <div class="pull-right col-lg-9 col-xs-12 div-article-title">
+                                                        <ul class="list-group">
+                                                            {% set number = 1 %}
+                                                            {% for article in articlesByCategory['data'] %}
+                                                            <li class="list-group-item">
+                                                                <span class="badge {{random(randomBadges)}} pull-left">{{number}}</span>
+                                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
+                                                            </li>
+                                                            {% set number = number+1 %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                            {% if articles[2] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[2]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for article in articles[2]['data'] %}
-                                            <li>
-                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                            {% if articles[3] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-warning">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[3]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for article in articles[3]['data'] %}
-                                            <li>
-                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>    
-                        
-                        <div class="row">
-                            {% if articles[4] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[4]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for article in articles[4]['data'] %}
-                                            <li>
-                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                            {% if articles[5] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[5]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for article in articles[5]['data'] %}
-                                            <li>
-                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                            {% if articles[6] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-warning">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[6]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for article in articles[6]['data'] %}
-                                            <li>
-                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="row">
-                            {% if articles[7] %}
-                            <div class="col-lg-4 col-xs-12">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-info-circle"></i> {{ articles[7]['name'] }}
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for article in articles[7]['data'] %}
-                                            <li>
-                                                <a href="{{ path('singlePageTileHtml', {'id': article['id'], 'title': article['title'], '_format': 'html'}) }}">{{ article['title'] }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% if loop.index in endNewRows %}</div>{% endif %}
+                        {% endfor %}
                     </div>    
                 </div>    
             </div>
@@ -163,110 +107,136 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title"><a href="http://bbs.utoconsult.com/forum.php">交流平台</a></h3>
                             </div>
-                            <div class="panel-body">    
-                            <ul style="">
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=61">
-                                    <b><img src="/uploads/forum/icon/common_61_icon.png"></b>
-                                    技术交流
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=44">
-                                    <b><img src="/uploads/forum/icon/common_44_icon.png"></b>
-                                    设计咨询
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=59">
-                                    <b><img src="/uploads/forum/icon/common_59_icon.png"></b>
-                                    冷库咨询
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=60">
-                                    <b><img src="/uploads/forum/icon/common_60_icon.png"></b>
-                                    工程施工
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=37">
-                                    <b><img src="/uploads/forum/icon/common_37_icon.png"></b>
-                                    材料集汇
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=68">
-                                    <b><img src="/uploads/forum/icon/common_68_icon.png"></b>
-                                    施工方法
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=70">
-                                    <b><img src="/uploads/forum/icon/common_70_icon.png"></b>
-                                    设备集汇
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=71">
-                                    <b><img src="/uploads/forum/icon/common_71_icon.png"></b>
-                                    安装配合
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=58">
-                                    <b><img src="/uploads/forum/icon/common_58_icon.png"></b>
-                                    置业交流
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=57">
-                                    <b><img src="/uploads/forum/icon/common_57_icon.png"></b>
-                                    海外置业
-                                </a>
-                                </li>
-
-
-
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=56">
-                                    <b><img src="/uploads/forum/icon/common_56_icon.png"></b>
-                                    装修承包
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=65">
-                                    <b><img src="/uploads/forum/icon/common_65_icon.png"></b>
-                                    厨卫设计
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=76">
-                                    <b><img src="/uploads/forum/icon/common_76_icon.png"></b>
-                                    五金门窗
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=78">
-                                    <b><img src="/uploads/forum/icon/common_78_icon.png"></b>
-                                    项目管理
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=62">
-                                    <b><img src="/uploads/forum/icon/common_62_icon.png"></b>
-                                    工程保险
-                                </a>
-                                </li>
-                                <li>
-                                <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=63">
-                                    <b><img src="/uploads/forum/icon/common_63_icon.png"></b>
-                                    工程保函
-                                </a>
-                                </li>
-
-
-                            </ul>
+                            <div class="panel-body">
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=61">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_61_icon.png">
+                                            <h3 class="m-b-xs"><strong>技术交流</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=44">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_44_icon.png">
+                                            <h3 class="m-b-xs"><strong>设计咨询</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=59">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_59_icon.png">
+                                            <h3 class="m-b-xs"><strong>冷库咨询</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=60">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_60_icon.png">
+                                            <h3 class="m-b-xs"><strong>工程施工</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=37">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_37_icon.png">
+                                            <h3 class="m-b-xs"><strong>材料集汇</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=68">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_68_icon.png">
+                                            <h3 class="m-b-xs"><strong>施工方法</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=70">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_70_icon.png">
+                                            <h3 class="m-b-xs"><strong>设备集汇</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=71">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_71_icon.png">
+                                            <h3 class="m-b-xs"><strong>安装配合</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=58">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_58_icon.png">
+                                            <h3 class="m-b-xs"><strong>置业交流</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=57">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_57_icon.png">
+                                            <h3 class="m-b-xs"><strong>海外置业</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=56">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_56_icon.png">
+                                            <h3 class="m-b-xs"><strong>装修承包</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=65">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_65_icon.png">
+                                            <h3 class="m-b-xs"><strong>厨卫设计</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=76">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_76_icon.png">
+                                            <h3 class="m-b-xs"><strong>五金门窗</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=78">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_78_icon.png">
+                                            <h3 class="m-b-xs"><strong>项目管理</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=62">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_62_icon.png">
+                                            <h3 class="m-b-xs"><strong>工程保险</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="contact-box center-version">
+                                        <a href="http://bbs.utoconsult.com/forum.php?mod=forumdisplay&amp;fid=63">
+                                            <img alt="image" class="img-circle" src="/uploads/forum/icon/common_63_icon.png">
+                                            <h3 class="m-b-xs"><strong>工程保函</strong></h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         
@@ -276,3 +246,11 @@
         </div>    
     </div>
 {% endblock %}    
+
+{% block js %}  
+    {% javascripts output='js/compiled/home.js' 
+            '@AppBundle/Resources/public/js/home.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

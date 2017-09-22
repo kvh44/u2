@@ -40,3 +40,14 @@ div.navbar li ul.dropdown-menu li a {
 .article .ibox-content {
     border-width: 0px;
 }
+
+img.small-photo {
+}
+
+div.div-article-title {
+    padding-left: 0px;
+}
+
+div.div-article-title > ul > li > span.badge {
+    margin-right: 5px;
+}
