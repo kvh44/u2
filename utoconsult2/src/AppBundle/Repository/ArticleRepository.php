@@ -40,16 +40,32 @@ class ArticleRepository extends EntityRepository {
                         ->getOneOrNullResult();
     }
 	
-	public function findArticlesByCategoryId($category1_id = null, $category2_id = null, $max = 10)
+	public function findArticlesByCategoryId($category1_id = null, $category2_id = null, $offset= 0, $max = 10, $withUser = false, $count = false)
 	{
 		$q = $this->createQueryBuilder('a')
-                        ->select('a.id, a.category1Id, a.category2Id, a.title')
+                        ->select('a.id, a.category1Id, a.category2Id, a.title, a.updatedAt')
                         ->where('a.isdeleted = :isdeleted')
                         ->setParameter('isdeleted', 0)
                         ->orderBy('a.id', 'DESC')
-                        ->setMaxResults($max)
                         ;
-						
+                
+                if($count === true){
+                    return count($q->getQuery()->getResult());
+                }
+                
+                if($max > 0) {
+                    $q->setMaxResults($max);
+                }
+                
+                if($offset > 0) {
+                    $q->setFirstResult($offset);
+                }
+                
+		if($withUser){
+                    $q->innerJoin('AppBundle:UtoconsultUser', 'u', 'WITH', 'a.userId = u.id');
+                    $q->addSelect('u.username, u.id as userId');
+                }
+                
 		if($category1_id) {
 			$q->andWhere('a.category1Id = :category1Id');
 			$q->setParameter('category1Id', $category1_id);
@@ -58,7 +74,7 @@ class ArticleRepository extends EntityRepository {
                 if($category2_id) {
 			$q->andWhere('a.category2Id = :category2Id');
 			$q->setParameter('category2Id', $category2_id);
-		}	 		
+		}
 		
 		return $q->getQuery()->getResult();
 	}

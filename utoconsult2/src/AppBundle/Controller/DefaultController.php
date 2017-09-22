@@ -16,7 +16,6 @@ class DefaultController extends FrontBaseController
     {
         // replace this example code with whatever you need
         $articles = $this->container->get('app_utoconsult.ArticleService')->findHomeArticlesByCategory();
-		dump($articles);
                 
         return $this->render('AppBundle:Home:index.html.twig', array(
 		'articles' => $articles
