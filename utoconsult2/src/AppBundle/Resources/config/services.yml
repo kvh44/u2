@@ -1,7 +1,7 @@
 services:
     app_utoconsult.CacheService:
             class: AppBundle\Services\CacheService
-            arguments: ["@service_container", "%cache.categories%"]
+            arguments: ["@service_container", "%cache.categories%", "%cache.homeArticles%"]
     app_utoconsult.CategoryService:
             class: AppBundle\Services\CategoryService
             arguments: ["@doctrine", "@session", "@app_utoconsult.CacheService"]       

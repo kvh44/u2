@@ -12,14 +12,20 @@ class CacheService
     
     protected $redisCategories;
     
+    protected $redisHomeArticles;
+
     protected $categories;
+    
+    protected $homeArticles;
 
 
-    public function __construct(Container $container, $categories)
+    public function __construct(Container $container, $categories, $homeArticles)
     {
         $this->container = $container;
         $this->redisCategories = $this->container->get('snc_redis.categories');
+        $this->redisHomeArticles = $this->container->get('snc_redis.homeArticles');
         $this->categories = $categories;
+        $this->homeArticles = $homeArticles;
     }
     
     public function checkRedisRunning($redis)
@@ -58,6 +64,33 @@ class CacheService
             return false;
         }
     } 
+    
+    public function getHomeArticlesCache()
+    {
+        try{
+            return $this->redisHomeArticles->hGet($this->homeArticles,'homeArticles');
+        } catch(\Exception $e) {
+            return false;
+        }
+    }  
+    
+    public function sethomeArticlesCache($homeArticles)
+    {
+        try{
+            return $this->redisHomeArticles->hSet($this->homeArticles, 'homeArticles', $homeArticles);
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
+    
+    public function removeHomeArticlesCache()
+    {
+        try{
+            return $this->redisHomeArticles->hDel($this->homeArticles,'homeArticles');
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
     
     
 }

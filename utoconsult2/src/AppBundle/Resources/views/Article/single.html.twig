@@ -11,7 +11,7 @@
 								{{ article.title }}
 							</h1>
 							{% if user is not null %}
-								<span class="text-muted"><i class="fa"></i> {{ user.username }} </span>
+                                                            <span class="text-muted"><i class="fa fa-user-circle"></i> {{ user.username }} </span>
 							{% endif %}
 							<span class="text-muted"><i class="fa fa-clock-o"></i> {{ article.updatedAt|date("Y年m月d日") }} </span>
 						</div>
