@@ -82,8 +82,9 @@
                                                             {% set number = number+1 %}
                                                             {% endfor %}
                                                         </ul>
+                                                        
+                                                        <a href="{{ path('category1NameHtml', {'id': articlesByCategory['id'], 'name': articlesByCategory['name'], '_format': 'html'}) }}" class="btn btn-block btn-outline btn-info">更多</a>    
                                                     </div>
-
                                             </div>
                                         </div>
                                     </div>
