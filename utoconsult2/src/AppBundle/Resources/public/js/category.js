@@ -5,7 +5,7 @@ $(document).ready(function(){
     $('#articleListTable').DataTable({
 		language: {
 			 "processing": "处理中...",
-                         "lengthMenu": "每页现实 _MENU_ 篇文章",
+                         "lengthMenu": "每页显示 _MENU_ 篇文章",
                          "zeroRecords": "对不起,没有此类内容",
                          "info": "当前显示 _PAGE_/_PAGES_ 页",
                          "infoEmpty": "对不起,没有此类内容",
