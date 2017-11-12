@@ -6,7 +6,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <meta name="robots" content="优拓－建筑工程技术与项目管理的交流平台" />
+        <meta name="description" content="优拓－建筑工程技术与项目管理的交流平台" />
+        <meta name="keywords" content="优拓－建筑工程技术与项目管理的交流平台" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{% block title %}优拓－建筑工程技术与项目管理的交流平台{% endblock %}</title>
         
         {% stylesheets output='css/compiled/app.css' 
@@ -14,6 +18,7 @@
             '@AppBundle/Resources/public/inspinia/font-awesome/css/font-awesome.css' 
             '@AppBundle/Resources/public/inspinia/css/animate.css' 
             '@AppBundle/Resources/public/inspinia/css/style.css' 
+            '@AppBundle/Resources/public/inspinia/css/non-responsive.css' 
             '@AppBundle/Resources/public/css/front.css' 
             filter='cssrewrite' 
         %}
@@ -32,7 +37,10 @@
             <div class="white-bg">
                 
                 <div class="container white-bg">
-                    <a href="{{ path('indexHtml') }}"><h1>优拓建筑工程技术</h1></a>
+                    <h1>
+                    <img src="/apple-touch-icon.png" class="img-circle circle-border img-sm" alt="logo">
+                    <a href="{{ path('indexHtml') }}">优拓建筑工程技术</a>
+                    </h1>
                 </div>
 
                 {% include '@AppBundle/Resources/views/menu.html.twig' %}
