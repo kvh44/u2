@@ -1,6 +1,7 @@
 AppBundle\Entity\UtoconsultAboutus:
     type: entity
     table: utoconsult_aboutus
+    repositoryClass: AppBundle\Repository\AboutusRepository
     id:
         id:
             type: bigint

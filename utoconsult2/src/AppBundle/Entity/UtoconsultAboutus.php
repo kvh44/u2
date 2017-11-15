@@ -59,7 +59,7 @@ class UtoconsultAboutus
      */
     public function getContent()
     {
-        return $this->content;
+        return htmlspecialchars_decode(stream_get_contents($this->content),ENT_QUOTES);
     }
 
     /**
