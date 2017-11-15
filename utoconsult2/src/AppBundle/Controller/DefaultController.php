@@ -20,5 +20,18 @@ class DefaultController extends FrontBaseController
         return $this->render('AppBundle:Home:index.html.twig', array(
 		'articles' => $articles
 		));
-    }       
+    }    
+    
+    /**
+     * @Route("/aboutus", name="aboutus")
+     * @Route("/aboutus.html", name="aboutusHtml")
+     */
+    public function aboutusAction(Request $request)
+    {
+        $aboutus = $this->container->get('app_utoconsult.ArticleService')->findAboutus();
+        
+        return $this->render('AppBundle:Home:aboutus.html.twig', array(
+		'aboutus' => $aboutus
+		));
+    }        
 }

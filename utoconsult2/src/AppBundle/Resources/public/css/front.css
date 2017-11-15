@@ -42,8 +42,8 @@ div.navbar li ul.dropdown-menu li a {
 }
 
 img.small-photo {
-	margin-right: 20px;
-	margin-bottom: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 div.div-article-title {
@@ -52,4 +52,16 @@ div.div-article-title {
 
 div.div-article-title > ul > li > span.badge {
     margin-right: 5px;
+}
+
+.gray-section {
+    background: #f4f4f4;
+    margin-top: 60px;
+}
+
+.contact {
+    background-image: url(/images/word_map.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    margin-top: 60px;
 }

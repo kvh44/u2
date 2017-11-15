@@ -67,8 +67,13 @@ class ArticleService {
         return $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId($category1_id, null, $offset, $limit, $withUser, $count);
     }
 	
-	public function findArticlesByCategory2($category2_id, $offset, $limit, $withUser, $count)
+    public function findArticlesByCategory2($category2_id, $offset, $limit, $withUser, $count)
     {
         return $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId(null, $category2_id, $offset, $limit, $withUser, $count);
     }
+    
+    public function findAboutus()
+    {
+        return $this->em->getRepository('AppBundle:UtoconsultAboutus')->findAboutus();
+    }        
 }
