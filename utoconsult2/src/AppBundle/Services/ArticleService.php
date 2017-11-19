@@ -64,12 +64,44 @@ class ArticleService {
     
     public function findArticlesByCategory1($category1_id, $offset, $limit, $withUser, $count)
     {
-        return $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId($category1_id, null, $offset, $limit, $withUser, $count);
+        $key = 'c1-'.$category1_id.'-'.$offset.'-'.$limit;
+        if($withUser){
+            $key .= $withUser ? '-withUser' : '';
+        }
+        if($count){
+            $key = 'c1-'.$category1_id.'-count';
+        }
+        
+        $articles = $this->cacheService->getArticlesForCategoryCache($key);
+        if(!$articles){
+            $articles = $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId($category1_id, null, $offset, $limit, $withUser, $count);
+            $this->cacheService->setArticlesForCategoryCache($key, serialize($articles));
+        } else {
+            $articles = unserialize($articles);
+        }
+        
+        return $articles;
     }
 	
     public function findArticlesByCategory2($category2_id, $offset, $limit, $withUser, $count)
     {
-        return $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId(null, $category2_id, $offset, $limit, $withUser, $count);
+        $key = 'c2-'.$category2_id.'-'.$offset.'-'.$limit;
+        if($withUser){
+            $key .= $withUser ? '-withUser' : '';
+        }
+        if($count){
+            $key = 'c2-'.$category2_id.'-count';
+        }
+        
+        $articles = $this->cacheService->getArticlesForCategoryCache($key);
+        if(!$articles){
+            $articles = $this->em->getRepository('AppBundle:UtoconsultMyArticle')->findArticlesByCategoryId(null, $category2_id, $offset, $limit, $withUser, $count);
+            $this->cacheService->setArticlesForCategoryCache($key, serialize($articles));
+        } else {
+            $articles = unserialize($articles);
+        }
+        
+        return $articles;
     }
     
     public function findAboutus()

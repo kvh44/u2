@@ -13,19 +13,25 @@ class CacheService
     protected $redisCategories;
     
     protected $redisHomeArticles;
+    
+    protected $redisArticlesForCategory;
 
     protected $categories;
     
     protected $homeArticles;
+    
+    protected $articlesForCategory;
 
 
-    public function __construct(Container $container, $categories, $homeArticles)
+    public function __construct(Container $container, $categories, $homeArticles, $articlesForCategory)
     {
         $this->container = $container;
         $this->redisCategories = $this->container->get('snc_redis.categories');
         $this->redisHomeArticles = $this->container->get('snc_redis.homeArticles');
+        $this->redisArticlesForCategory = $this->container->get('snc_redis.articlesForCategory');
         $this->categories = $categories;
         $this->homeArticles = $homeArticles;
+        $this->articlesForCategory = $articlesForCategory;
     }
     
     public function checkRedisRunning($redis)
@@ -87,6 +93,33 @@ class CacheService
     {
         try{
             return $this->redisHomeArticles->hDel($this->homeArticles,'homeArticles');
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
+    
+    public function getArticlesForCategoryCache($key)
+    {
+        try{
+            return $this->redisArticlesForCategory->hGet($this->articlesForCategory, $key);
+        } catch(\Exception $e) {
+            return false;
+        }
+    }  
+    
+    public function setArticlesForCategoryCache($key, $articlesForCategory)
+    {
+        try{
+            return $this->redisArticlesForCategory->hSet($this->articlesForCategory, $key, $articlesForCategory);
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
+    
+    public function removeArticlesForCategoryCache($key)
+    {
+        try{
+            return $this->redisArticlesForCategory->hDel($this->articlesForCategory, $key);
         } catch(\Exception $e) {
             return false;
         }

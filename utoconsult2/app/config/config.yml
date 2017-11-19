@@ -11,8 +11,10 @@ parameters:
     cache.dsn.default: "redis://localhost"
     cache.dsn.categories: "redis://localhost/1"
     cache.dsn.homeArticles: "redis://localhost/1"
+    cache.dsn.articlesForCategory: "redis://localhost/1"
     cache.categories: "categories"
     cache.homeArticles: "homeArticles"
+    cache.articlesForCategory: "articlesForCategory"
     search.host: "localhost"
     search.port: 9200
     upload_directory: "uploads/"
@@ -107,6 +109,11 @@ snc_redis:
             alias: homeArticles
             dsn: %cache.dsn.homeArticles%
             logging: true      
+        articlesForCategory:
+            type: predis
+            alias: articlesForCategory
+            dsn: %cache.dsn.articlesForCategory%
+            logging: true
     session:
         client: default
         prefix: session

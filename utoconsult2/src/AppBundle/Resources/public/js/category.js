@@ -19,7 +19,8 @@ $(document).ready(function(){
         serverSide: true,
         processing: true,
         ordering: false,
-		searching: false,
+        searching: false,
+        deferRender: true,
         ajax: categoryListAjaxUrl,
         columns: [
             { data: function ( data, type, row ) {
