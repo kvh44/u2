@@ -33,5 +33,14 @@ class DefaultController extends FrontBaseController
         return $this->render('AppBundle:Home:aboutus.html.twig', array(
 		'aboutus' => $aboutus
 		));
-    }        
+    }   
+    
+    /**
+     * @Route("/search", name="search")
+     * @Route("/search.html", name="searchHtml")
+     */
+    public function searchAction(Request $request)
+    {
+        
+    }
 }

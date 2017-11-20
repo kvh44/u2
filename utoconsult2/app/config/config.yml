@@ -19,6 +19,10 @@ parameters:
     search.port: 9200
     upload_directory: "uploads/"
     category1_photo1_directory: "category1photo1/"
+    search.host: "localhost"
+    search.port: 9200
+    search.article.numberResults: 10
+    fos_elastica.index_manager: "fos_elastica.index_manager"
 
 framework:
     #esi: ~
@@ -118,3 +122,84 @@ snc_redis:
         client: default
         prefix: session
         ttl: 36000        
+        
+     
+fos_elastica:
+    clients:
+        default: { host: %search.host%, port: %search.port% }
+    indexes:
+        app:
+            client: default
+            use_alias: true
+            index_name: app_utoconsult_%kernel.environment%        
+            types:
+                article:
+                    properties:
+                    mappings:
+                        id:
+                            type: keyword
+                            index: not_analyzed
+                        category1Id: 
+                            type: keyword
+                            index: not_analyzed
+                        category2Id: 
+                            type: keyword
+                            index: not_analyzed
+                        keywords:
+                            type: text
+                            boost: 5
+                        description:
+                            type: text
+                            boost: 5
+                        title:
+                            type: text
+                            boost: 10
+                        content:
+                            type: text
+                            boost: 1
+                        keywordsEn:
+                            type: text
+                            boost: 5
+                        descriptionEn:
+                            type: text
+                            boost: 5
+                        titleEn: 
+                            type: text
+                            boost: 10
+                        contentEn:
+                            type: text
+                            boost: 1
+                        userId:
+                            type: keyword
+                            index: not_analyzed
+                        level:
+                            type: keyword
+                            index: not_analyzed
+                        isdeleted:
+                            type: keyword
+                            index: not_analyzed
+                        isvalid:
+                            type: keyword
+                            index: not_analyzed
+                        createdAt:
+                            type: date
+                            index: not_analyzed
+                        updatedAt:
+                            type: date
+                            index: not_analyzed
+                        slug: 
+                            type: keyword
+                            index: not_analyzed
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\UtoconsultMyArticle
+                        provider: 
+                            debug_logging: false
+                        finder: ~   
+                        listener: 
+                            insert: false
+                            update: false
+                            delete: false
+                            logger: false
+                        elastica_to_model_transformer:
+                            ignore_missing: true          
