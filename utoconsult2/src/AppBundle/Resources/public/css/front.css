@@ -65,3 +65,7 @@ div.div-article-title > ul > li > span.badge {
     background-repeat: no-repeat;
     margin-top: 60px;
 }
+
+.article {
+    min-height: 500px;
+}

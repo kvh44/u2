@@ -81,6 +81,7 @@ class SearchService {
         if(strlen($word) === 0){
             $queryObject->addSort(array('updatedAt' => array('order' => 'desc')));
         }
+        
         $this->resultSet = $search->search($queryObject)->getResults();
         
         return $this->getSourceArray();

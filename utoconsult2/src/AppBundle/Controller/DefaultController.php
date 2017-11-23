@@ -41,6 +41,25 @@ class DefaultController extends FrontBaseController
      */
     public function searchAction(Request $request)
     {
-        
+        $result = null;
+        if(strlen($request->get('word')) > 0){
+            $word = $request->get('word');
+            $offset = $request->get('offset')?$request->get('offset'):0;
+            $limit = $request->get('limit')?$request->get('limit'):$this->getParameter('search.article.numberResults');
+
+            $resultSet = $this->container->get('app_utoconsult.SearchService')->searchArticleManager(0, $offset, $limit, $word);
+            if($resultSet['code'] === 200){
+                $result['resultSet'] = $resultSet['data'];
+            } 
+
+            $total = $this->container->get('app_utoconsult.SearchService')->searchArticleManager(1, $offset, $limit, $word);
+            if($total['code'] === 200){
+                $result['total'] = $total['data'];
+                $result['word'] = $word;
+            } 
+        }
+        return $this->render('AppBundle:Search:index.html.twig', array(
+                'result' => $result
+        ));
     }
 }

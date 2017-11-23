@@ -19,10 +19,16 @@ class SearchController extends Controller
         $word = $request->get('word');
         $only_total = $request->get('only_total');
         
+        $result = $this->container->get('app_utoconsult.SearchService')->searchArticleManager($only_total, $offset, $limit, $word);
+
+        if($request->get('type') === 'ajax' && $request->get('format') === 'html'){
+                return $this->render('AppBundle:Search:resultPartial.html.twig', array(
+                        'resultSet' => $result['data']
+                ));
+            }
+        
         return new JsonResponse(
-                array(
-                    $this->container->get('app_utoconsult.SearchService')->searchArticleManager($only_total, $offset, $limit, $word)
-                )
+                array($result)
         );
     }
 }
