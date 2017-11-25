@@ -33,18 +33,23 @@ class SearchService {
     
     protected $searchPort;
 
-    public function __construct(Container $container, Registry $doctrine, $indexManager)
+    public function __construct(Container $container, Registry $doctrine, $indexManager, $searchHost, $searchPort)
     {
         $this->container = $container;
         $this->doctrine = $doctrine;
         $this->em = $this->doctrine->getManager();
         $this->indexManager = $indexManager;
         $this->client = new Client();
+        $this->searchHost = $searchHost;
+        $this->searchPort = $searchPort;
     }
     
     public function searchArticleManager($only_total, $offset, $limit, $word)
     {
         try{
+            if(!$this->getSearchEngineConnection()){
+                return array('data' => null, 'code' => 500,'message' => 'no connection');
+            }
             $searchResult = $this->searchArticleByIndex($only_total, $offset, $limit, $word);
             
             return array('data' => $searchResult, 'code' => 200);
@@ -94,11 +99,13 @@ class SearchService {
         }, $this->resultSet);
     }
     
-    public function getSearchEngineAliases()
+    public function getSearchEngineConnection()
     {
         try{
-            $info = exec("curl --silent 'http://'{$this->searchHost}':'{$this->searchPort}");
-            if(strlen($info)){
+            $url = "curl --silent http://".$this->searchHost.":".$this->searchPort;
+            $info = exec($url);
+
+            if(strlen(json_encode($info)) > 2){
                 return true;
             } 
             return false;

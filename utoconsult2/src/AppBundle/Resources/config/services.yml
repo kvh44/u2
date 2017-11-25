@@ -4,7 +4,7 @@ services:
             arguments: ["@service_container", "%cache.categories%", "%cache.homeArticles%", "%cache.articlesForCategory%"]
     app_utoconsult.SearchService:
             class: AppBundle\Services\SearchService
-            arguments: ["@service_container", "@doctrine", "%fos_elastica.index_manager%"]
+            arguments: ["@service_container", "@doctrine", "%fos_elastica.index_manager%", "%search.host%", "%search.port%"]
     app_utoconsult.CategoryService:
             class: AppBundle\Services\CategoryService
             arguments: ["@doctrine", "@session", "@app_utoconsult.CacheService"]       

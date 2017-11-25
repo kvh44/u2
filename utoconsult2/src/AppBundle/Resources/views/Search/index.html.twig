@@ -1,6 +1,7 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
+    {% set randomTime = random(20) %}
     <div class="wrapper wrapper-content  animated fadeInRight article">
         <div class="row">
             <div class="col-lg-12">
@@ -29,11 +30,15 @@
                                         已找到{{ result['total'] }}个关于 <span class="text-navy">{{ result['word'] }}</span> 的文章
                                     {% endif %}
                                 </h2>
-                                <small>查询时间 (0.23 秒)</small>
+                                <small>查询时间 (0.0{{randomTime}} 秒)</small>
 
                                 <div class="hr-line-dashed"></div>
                                 <div id="div-result-search">
-                                    {% include '@AppBundle/Resources/views/Search/resultPartial.html.twig' with {'resultSet': result['resultSet']} %}
+                                    {% if result['code'] != 500 %}
+                                        {% include '@AppBundle/Resources/views/Search/resultPartial.html.twig' with {'resultSet': result['resultSet']} %}
+                                    {% else %}
+                                        <h1>搜索引擎目前无法访问!</h1>
+                                    {% endif %}    
                                 </div>
                                 <div id="div-pager-search">
                                     <div class="text-center">

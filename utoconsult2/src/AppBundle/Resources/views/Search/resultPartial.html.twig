@@ -1,7 +1,7 @@
 {% for result in resultSet %}
     <div class="search-result">
         <h3><a href="{{ path('singlePageTileHtml', {'id': result['id'], 'title': result['title'], '_format': 'html'}) }}">{{result['title']}}</a></h3>
-        <p><a href="{{ path('singlePageTileHtml', {'id': result['id'], 'title': result['title'], '_format': 'html'}) }}" class="search-link">http://{{domain_name}}{{ path('singlePageTileHtml', {'id': result['id'], 'title': result['title'], '_format': 'html'}) }}</a></p>
+        <p><a href="{{ path('singlePageTileHtml', {'id': result['id'], 'title': result['title'], '_format': 'html'}) }}" class="search-link">http://{{domain_name}}{{ path('singlePageHtml', {'id': result['id'], '_format': 'html'}) }}</a></p>
         
         {% if result['keywords'] %}
         <p>
