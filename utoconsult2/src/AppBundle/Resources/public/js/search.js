@@ -12,5 +12,6 @@ function searchPagerAjax(offset, limit, word, id)
     })
     .done(function( data ) {
         $('#div-result-search').html(data);
+        $(window).scrollTop(0);
     });
 }
