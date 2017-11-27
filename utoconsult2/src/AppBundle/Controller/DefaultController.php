@@ -33,5 +33,42 @@ class DefaultController extends FrontBaseController
         return $this->render('AppBundle:Home:aboutus.html.twig', array(
 		'aboutus' => $aboutus
 		));
-    }        
+    }   
+    
+    /**
+     * @Route("/search", name="search")
+     * @Route("/search.html", name="searchHtml")
+     */
+    public function searchAction(Request $request)
+    {
+        $result = null;
+        
+        if(strlen($request->get('word')) > 0){
+            $word = $request->get('word');
+            $offset = $request->get('offset')?$request->get('offset'):0;
+            $limit = $request->get('limit')?$request->get('limit'):$this->getParameter('search.article.numberResults');
+
+            $resultSet = $this->container->get('app_utoconsult.SearchService')->searchArticleManager(0, $offset, $limit, $word);
+            if($resultSet['code'] === 200){
+                $result['resultSet'] = $resultSet['data'];
+                $result['code'] = 200;
+            } else {
+                $result['resultSet'] = null;
+                $result['code'] = 500;
+            }
+
+            $total = $this->container->get('app_utoconsult.SearchService')->searchArticleManager(1, $offset, $limit, $word);
+            if($total['code'] === 200){
+                $result['total'] = $total['data'];
+                $result['word'] = $word;
+            } else {
+                $result['total'] = 0;
+                $result['word'] = $word;
+            }
+        }
+
+        return $this->render('AppBundle:Search:index.html.twig', array(
+                'result' => $result
+        ));
+    }
 }
